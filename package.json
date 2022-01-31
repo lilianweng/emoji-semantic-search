@@ -2,6 +2,7 @@
   "name": "emoji-search-openai",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:12358",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -10,6 +11,7 @@
     "@types/node": "^16.11.21",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "openai": "^2.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
