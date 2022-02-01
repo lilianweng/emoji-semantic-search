@@ -3,3 +3,4 @@ Flask==1.1.4
 Flask_Cors==3.0.10
 jsonlines==1.2.0
 numpy==1.21.0
+openai==0.11.0
