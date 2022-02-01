@@ -1,0 +1,3 @@
+from typing import Any, Optional
+
+def eval(expr: Any, parser: Any = ..., engine: Optional[str]=..., truediv: Any = ..., local_dict: Any = ..., global_dict: Any = ..., resolvers: Any = ..., level: Any = ..., target: Any = ..., inplace: Any = ...) -> Any: ...

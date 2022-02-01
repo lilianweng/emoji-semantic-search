@@ -1,0 +1,3 @@
+from typing import Any
+
+def format_dateaxis(subplot: Any, freq: Any, index: Any) -> None: ...

@@ -1,0 +1,9 @@
+requests>=2.20
+tqdm
+pandas>=1.2.3
+pandas-stubs>=1.1.0.11
+openpyxl>=3.0.7
+
+[dev]
+black~=21.6b0
+pytest==6.*

@@ -1,0 +1,5 @@
+six
+termcolor
+
+[:python_version < "3.4"]
+enum34
