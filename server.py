@@ -8,7 +8,7 @@ import openai
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-openai.api_key = os.environ["OPENAI_API_KEY_PROD"]
+openai.api_key = os.environ["OPENAI_API_KEY"]
 openai.api_base = "https://api.openai.com"
 
 with gzip.GzipFile(fileobj=open("emoji-embeddings.jsonl.gz", "rb"), mode="rb") as fin:
@@ -39,8 +39,6 @@ def get_top_relevant_emojis(query: str, k: int = 10) -> List[Tuple[str, str, flo
     return result
 
 
-port = 12358
-debug = False
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
@@ -58,4 +56,4 @@ def search():
     return jsonify(error=error, result=result)
 
 
-app.run(port=port, debug=debug)
+app.run()
