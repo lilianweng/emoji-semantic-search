@@ -31,7 +31,12 @@ def get_top_relevant_emojis(query: str, k: int = 10) -> List[Tuple[str, str, flo
     ind = np.argpartition(dotprod, -k)[-k:]
     ind = ind[np.argsort(dotprod[ind])][::-1]
     result = [
-        (emojis[i][0], emojis[i][1].capitalize(), (dotprod[i] - m_dotprod) * 100) for i in ind
+        {
+            "emoji": emojis[i][0],
+            "message": emojis[i][1].capitalize(),
+            "score": (dotprod[i] - m_dotprod) * 100,
+        }
+        for i in ind
     ]
     return result
 
@@ -48,7 +53,7 @@ def main(port: int = 12358, debug: bool = False):
         query = request.get_json().get("query")
         try:
             result = get_top_relevant_emojis(query)
-        except Error as err:
+        except Exception as err:
             error = str(err)
         return jsonify(error=error, result=result)
 

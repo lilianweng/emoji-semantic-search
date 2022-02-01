@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+let SERVER: string = process.env.REACT_APP_SERVER_ADDRESS || "";
+console.log("process.env", process.env);
+
 type SearchResult = {
   emoji: string,
   message: string,
@@ -7,7 +10,7 @@ type SearchResult = {
 };
 
 async function fetch_search_results(query: string): Promise<Array<SearchResult>> {
-  const response = await fetch("http://localhost:12358/search", {
+  const response = await fetch(SERVER + "/search", {
       method: 'POST',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
@@ -47,14 +50,35 @@ function App() {
     }
   }
 
+  const displaySearchResult = (data: Array<SearchResult>) => {
+    return (
+      <div className="center">
+        <table>
+          <tbody>
+          {data.map((row, i) => {
+            return (
+              <tr key={i}>
+                <td className='emoji'><button onClick={() => {navigator.clipboard.writeText(row.emoji)}} title="Click to copy">{row.emoji}</button></td>
+                <td className='message'>{row.message}</td>
+                <td className='score'>{row.score.toFixed(2)}</td>
+              </tr>
+            )
+          })}
+          </tbody>
+        </table>
+       </div>
+    );
+  }
+
   return (
     <>
+      <h1>Emoji Search</h1>
       <input ref={queryInputRef} type="text"
-        onKeyPress={(e) => e.key === 'Enter' && runSearch()} />
+        onKeyPress={(e) => e.key === 'Enter' && runSearch()}
+        placeholder="Find the most relevant emojis." />
+      &nbsp;
       <button onClick={runSearch}>Search</button>
-      {data && data.map(row => {
-        return <div>{row}</div>
-      })}
+      {data.length > 0 && displaySearchResult(data)}
     </>
   );
 }
