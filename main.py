@@ -15,6 +15,7 @@ with gzip.GzipFile(fileobj=open("emoji-embeddings.jsonl.gz", "rb"), mode="rb") a
     emoji_info = list(jsonlines.Reader(fin))
 emojis = [(x["emoji"], x["message"]) for x in emoji_info]
 embeddings = [x["embed"] for x in emoji_info]
+print(f"Load {len(embeddings)} embeddings.")
 
 
 def get_embedding(text: str) -> List[float]:
@@ -22,7 +23,7 @@ def get_embedding(text: str) -> List[float]:
     return result["data"][0]["embedding"]
 
 
-def get_top_relevant_emojis(query: str, k: int = 10) -> List[Tuple[str, str, float]]:
+def get_top_relevant_emojis(query: str, k: int = 20) -> List[Tuple[str, str, float]]:
     query_embed = get_embedding(query)
     dotprod = np.matmul(embeddings, np.array(query_embed).T)
     m_dotprod = np.median(dotprod)

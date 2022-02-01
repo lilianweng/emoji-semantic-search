@@ -1,6 +1,6 @@
 .container {
   font-family: Helvetica;
-  margin: 100px;
+  margin: 50px;
   font-size: 16px;
 }
 
@@ -71,7 +71,7 @@ input {
 }
 
 table {
-  color: #555555;
+  color: #555;
   margin: auto;
 }
 
@@ -84,6 +84,7 @@ table td.emoji {
 }
 table td.message {
    width: 250px;
+   color: #999;
 }
 table td.score {
   text-align: right;

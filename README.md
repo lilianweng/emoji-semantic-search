@@ -4,10 +4,10 @@
 
 Start server:
 ```commandline
-python server.py --debug=True
+OPENAI_API_KEY="{api_key}" python main.py
 ```
 
 Start frontend
 ```commandline
-REACT_APP_SERVER_ADDRESS="http://localhost:12358" npm start
+REACT_APP_SERVER_ADDRESS="http://localhost:5000" npm start
 ```

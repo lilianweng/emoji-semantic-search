@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 let SERVER: string = process.env.REACT_APP_SERVER_ADDRESS || "";
-console.log("process.env", process.env);
 
 type SearchResult = {
   emoji: string,
@@ -34,11 +33,9 @@ function App() {
 
   useEffect(() => {
     if (query.length > 0) {
-      console.log("query:", query);
       fetch_search_results(query)
       .then( data => {
           setData(data);
-          console.log(data);
       });
     }
   }, [query]);
@@ -46,7 +43,6 @@ function App() {
   const runSearch = () => {
     if (queryInputRef && queryInputRef.current) {
       setQuery(queryInputRef.current.value);
-      console.log(query);
     }
   }
 
