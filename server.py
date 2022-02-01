@@ -2,7 +2,6 @@ import gzip
 import os
 from typing import List, Tuple
 
-import fire
 import jsonlines
 import numpy as np
 import openai
@@ -40,24 +39,23 @@ def get_top_relevant_emojis(query: str, k: int = 10) -> List[Tuple[str, str, flo
     return result
 
 
-def main(port: int = 12358, debug: bool = False):
-    app = Flask(__name__)
-    CORS(app, support_credentials=True)
-
-    @app.route("/search", methods=["GET", "POST"])
-    def search():
-        error = None
-        result = []
-
-        query = request.get_json().get("query")
-        try:
-            result = get_top_relevant_emojis(query)
-        except Exception as err:
-            error = str(err)
-        return jsonify(error=error, result=result)
-
-    app.run(port=port, debug=debug)
+port = 12358
+debug = False
+app = Flask(__name__)
+CORS(app, support_credentials=True)
 
 
-if __name__ == "__main__":
-    fire.Fire(main)
+@app.route("/search", methods=["POST"])
+def search():
+    error = None
+    result = []
+
+    query = request.get_json().get("query")
+    try:
+        result = get_top_relevant_emojis(query)
+    except Exception as err:
+        error = str(err)
+    return jsonify(error=error, result=result)
+
+
+app.run(port=port, debug=debug)
