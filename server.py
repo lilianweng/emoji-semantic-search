@@ -1,14 +1,13 @@
-import os
-import fire
-from flask import Flask, jsonify, request
 import gzip
-import emoji
-import openai
-import time
+import os
+from typing import List, Tuple
+
+import fire
 import jsonlines
 import numpy as np
-from typing import Dict, List, Tuple
-from flask_cors import CORS, cross_origin
+import openai
+from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 openai.api_key = os.environ["OPENAI_API_KEY_PROD"]
 openai.api_base = "https://api.openai.com"
