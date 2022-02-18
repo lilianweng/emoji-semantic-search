@@ -1,0 +1,123 @@
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
+      format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+body,
+input,
+button {
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #353740;
+}
+body {
+  margin: 0;
+  height: 100%;
+}
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  font-size: 32px;
+}
+
+.loader {
+  margin-top: 30px;
+  align-self: center;
+}
+
+form,
+.result {
+  width: 400px;
+  max-width: 90vw;
+}
+
+form {
+  display: flex;
+}
+input[type="text"] {
+  padding: 6px 10px;
+  border: 1px solid #acacbe;
+  border-radius: 5px;
+  flex: 1;
+}
+input[type="submit"] {
+  margin-left: 6px;
+  padding: 6px 10px;
+  background-color: #ececf1;
+  border: 1px solid #acacbe;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: #d9d9e3;
+}
+input[type="submit"]:active {
+  background-color: #c5c5d2;
+}
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #8e8ea0;
+  opacity: 1; /* Firefox */
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #8e8ea0;
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #8e8ea0;
+}
+
+.result {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.result-list {
+  padding-left: 10px;
+}
+.result-row {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  font-size: 20px;
+}
+.emoji {
+  width: 36px;
+  font-size: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.tooltip {
+  padding: 2px 8px !important;
+}
+
+.footer {
+  color: #aaa;
+  font-size: 13px;
+  padding: 0 10px 10px;
+  text-align: center;
+}
+.footer a {
+  color: #aaa;
+}
+.footer a:hover {
+  color: #666;
+}
