@@ -4,7 +4,7 @@
 
 The app is currently running at [emojisearch.app](https://www.emojisearch.app/)
 
-![image](https://user-images.githubusercontent.com/901179/152265271-bb447be2-37d2-4042-844a-99e656697a54.png)
+<img width="955" alt="image" src="https://user-images.githubusercontent.com/901179/154786556-6acec72d-6a6c-4242-9449-db84fddb8d97.png">
 
 
 ## Local test
