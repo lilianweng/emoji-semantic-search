@@ -10,6 +10,7 @@ from flask_cors import CORS
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 openai.api_base = "https://api.openai.com/v1"
+EMBEDDING_MODEL = "text-embedding-ada-002"
 
 SERVER_DIR = os.path.dirname(os.path.abspath(__file__))
 EMBED_FILE = os.path.join(SERVER_DIR, "emoji-embeddings.jsonl.gz")
@@ -22,7 +23,7 @@ embeddings = [x["embed"] for x in emoji_info]
 
 
 def get_embedding(text: str) -> List[float]:
-    result = openai.Engine(f"text-similarity-babbage-001").embeddings(input=text)
+    result = openai.Embedding.create(input=text, model=EMBEDDING_MODEL)
     return result["data"][0]["embedding"]
 
 

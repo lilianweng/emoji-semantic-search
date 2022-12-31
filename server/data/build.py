@@ -8,16 +8,16 @@ import openai
 import tqdm
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
-openai.api_base = "https://api.openai.com"
+openai.api_base = "https://api.openai.com/v1"
 
 SERVER_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-
+EMBEDDING_MODEL = "text-embedding-ada-002"
 
 def get_embeddings(inp: List[str], batch: int=1000, inp_type: str="doc") -> List[List[float]]:
     i = 0
     outputs = []
     while i < len(inp):
-        result = openai.Engine(f"text-similarity-babbage-001").embeddings(input=inp[i:i+batch])
+        result = openai.Embedding.create(input=inp[i:i+batch], model=EMBEDDING_MODEL)
         outputs += [x["embedding"] for x in result['data']]
         i += batch
     assert len(outputs) == len(inp)
