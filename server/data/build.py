@@ -17,7 +17,7 @@ def get_embeddings(inp: List[str], batch: int=1000, inp_type: str="doc") -> List
     i = 0
     outputs = []
     while i < len(inp):
-        result = openai.Embedding.create(input=inp[i:i+batch], model=EMBEDDING_MODEL)
+        result = openai.Embedding.create(input=inp[i:i+batch], engine=EMBEDDING_MODEL)
         outputs += [x["embedding"] for x in result['data']]
         i += batch
     assert len(outputs) == len(inp)

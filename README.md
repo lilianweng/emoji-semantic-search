@@ -9,6 +9,13 @@ The app is currently running at [emojisearch.app](https://www.emojisearch.app/)
 
 ## Local test
 
+
+```
+python -m venv venv
+source venv/bin/activate
+pip install -r server/requirements.txt
+```
+
 Get your OpenAI API key at [https://openai.com/api/](https://openai.com/api/).
 
 Build embedding index:
@@ -18,12 +25,15 @@ OPENAI_API_KEY={api_key} python server/data/build.py
 
 Start backend:
 ```bash
-OPENAI_API_KEY={api_key} python server/app.py
+export OPENAI_API_KEY={api_key}
+export EMOJI_SERVER_PORT=7777 # not required, default port is 5000. Recommended for MacOS since port 5000 can cause issues when using AirPlay.
+
+python server/app.py 
 ```
 
 Start frontend
 ```bash
 cd client
 npm install  # Run once
-REACT_APP_SERVER_ADDRESS="http://localhost:5000" npm start
+REACT_APP_SERVER_ADDRESS="http://localhost:5000" npm start # change port accordingly if EMOJI_SERVER_PORT was used above
 ```

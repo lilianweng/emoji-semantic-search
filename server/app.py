@@ -7,6 +7,9 @@ import openai
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
+
+EMOJI_SERVER_PORT = int(os.environ.get("EMOJI_SERVER_PORT", '5000'))
+
 openai.api_key = os.environ["OPENAI_API_KEY"]
 openai.api_base = "https://api.openai.com/v1"
 EMBEDDING_MODEL = "text-embedding-ada-002"
@@ -45,7 +48,7 @@ class EmojiSearchApp:
         return self._embeddings
 
     def get_openai_embedding(self, text: str) -> list[float]:
-        result = openai.Embedding.create(input=text, model=EMBEDDING_MODEL)
+        result = openai.Embedding.create(input=text, engine=EMBEDDING_MODEL)
         return result["data"][0]["embedding"]
 
     def get_top_relevant_emojis(self, query: str, k: int = 20) -> list[dict]:
@@ -81,9 +84,12 @@ def search():
         error = str(err)
     return jsonify(error=error, result=result)
 
+
 @app.route("/")
 def index():
     return 'Hello World!'
 
-app.run()
+
+
+app.run(port=EMOJI_SERVER_PORT)
 
